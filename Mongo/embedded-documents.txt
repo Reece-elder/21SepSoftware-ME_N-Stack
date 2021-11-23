@@ -1,0 +1,42 @@
+- Create a habitat that contains lizards
+OR
+- Create a lizard that contains a habitat 
+
+db.lizardPen.insertOne(
+{
+	"Name" : "Outback Rock",
+	"capacity" : 5,
+	"temp" : 28,
+	"lizards" : {
+			"name" : "Yusk",
+			"colour" : "Green",
+			"age" : 5
+		}
+}
+);
+
+db.lizardPen.insertOne(
+{
+	"name" : "Swamp Lake",
+	"capacity" : 3,
+	"temp" : 17,
+	"lizards" : [
+			{
+			"name" : "venus",
+			"colour" : "yellow"
+			},
+			{
+			"name" : "travis",
+			"species" : "water snake"
+			}
+		    ]
+}
+);
+
+Exercise
+- Using existing collections and database, create a document with an embedded document 
+
+- Create a document with an array of embedded documents
+
+- Create a document with an array of embedded documents, that also have embedded documents
+

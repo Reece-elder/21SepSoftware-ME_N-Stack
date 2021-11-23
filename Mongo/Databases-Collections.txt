@@ -1,0 +1,41 @@
+CREATE
+Create a Database
+use <db_name> 
+
+You cannot view a database that doesnt have any collections / data
+
+READ 
+show dbs
+
+UPDATE
+Changing the name of a database
+<old_name>.copyDatabase('old_name','new_name')
+old_name.dropDatabase
+
+Delete
+use DB_NAME
+db.dropDatabase();
+
+
+Collection Commands
+
+Once you've specified use <db_name> you can pass in db instead of the database name
+
+Create - Creates a collection
+
+db.createCollection('Lizards');
+
+Read - Show collections
+show collections
+db.show collections;
+
+Delete 
+db.<collection_name>.drop();
+
+Update
+db.collection_name.renameCollection('new_name')
+
+Exercise - 
+Using the existing database, create 2 new collections, update the name of one and delete the other
+
+

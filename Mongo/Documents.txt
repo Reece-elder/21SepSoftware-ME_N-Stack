@@ -1,0 +1,223 @@
+Documents are objects of data stored in MongoDB using BSON 
+
+Documents DO NOT NEED TO follow a strict schema (but is generally useful to give them a schema) 
+
++ Much easier to update data along the line 
+- Its harder to see the connections between data AND data can be come muddled
+
+ 
+How to Create a document to put in the collection
+
+insertOne() <-- Pass in the BSON we want to add
+
+db.lizardPen.insertOne(
+{
+"name" : "Monty",
+"species" : "Iguana",
+"length" : 23
+});
+
+_id : Is a default 'primary key' unique identifier for this object, created with hexidecimal 
+
+insertMany() to insert multiple documents
+
+db.lizardPen.insertMany([
+
+{
+"name" : "buttercup",
+"species" : "Gecko",
+"favFood" : [
+	"Crickets",
+	"Kiwis",
+	"Spinach"
+	]
+},
+{
+"name" : "Mia",
+"species" : "Corn Snake",
+"length" : 31,
+"shedSkin" : true
+}]);
+
+Exercise - 
+Using a database called zoo, pet shop, garage, cafe 
+Create a collection within that database
+Insert 3 document that make sense 
+Each doucment should have atleast 4 fields, with 2 of them being unique to that document 
+
+insertOne() - Contains one document
+insertMany() - Contains atleast 2 documents 
+
+
+===========================================
+Read Queries
+===========================================
+
+.find() - returns ALL data in that collection
+SELECT * FROM tablename
+
+## Projection 
+Only grabbing specific fields from objects
+
+db.lizardPen.find(
+{},
+{
+"name" : true,
+"Species" : true,
+"length" : true
+}
+);
+
+_id WILL ALWAYS BE SHOWN 
+UNLESS EXCLUDED WITH "_id" : false
+
+## Simple Queries
+
+By passing in partial objects, we can only select documents we want
+
+SELECT * FROM lizardPen WHERE name = "Monty"
+
+db.lizardPen.find(
+	{
+	"name" : "Monty"
+	}
+);
+
+db.lizardPen.find(
+{
+"favFood" : [
+	"Crickets",
+	"Spinach"
+	]
+}
+);
+
+## Query Operators
+
+These are used to check more than is x = y
+x != y, x < y, x contains y
+
+// Grab all lizards with length above 30
+db.lizardPen.find( 
+{
+"length" : {"$gt" : 30}
+}
+);
+
+equals = $eq
+not equals = $ne
+greater than = $gt
+less than = $lt
+Greater than or equal = $gte  
+
+### In NiN (in or not in)
+- If an array contains (or doesnt contain) a specific value 
+
+db.lizardPen.find(
+{
+	"favFood" : { "$in" : [
+			       "Kiwis"
+			      ]
+		    }
+}
+)
+
+{ "favFood" : { "$nin" : [ "kiwis"] } }
+
+db.lizardPen.find(
+{
+	"favFood" : { "$nin" : [
+			       "Lasagna"
+			      ]
+		    }
+}
+)
+
+Exercise
+
+Create 2 more documents to add to your collection (look at below queries to see what you may need to add) 
+
+Using the following queries return some data
+- Read all
+- Equals
+- Doesnt Equal
+- Less than
+- Greater than or equals
+- In
+- not in 
+
+Stretch goal 
+- For every query, only show the data you're querying and some other id (name) 
+
+.find() - Search the entire collection for documents, returning them all
+.findOne() - Searches through the collection and returns the first that matches 
+
+## Delete Queries
+
+db.lizardPen.deleteOne(); - Will delete the first document (by query and id) that matches the criteria
+
+db.lizardPen.deleteMany(); - Will delete all objects that match the criteria
+
+db.lizardPen.deleteOne(
+{
+"name" : "Monty"
+}
+);
+
+db.lizardPen.deleteMany(
+{
+"name" : "Monty"
+}
+);
+
+db.lizardPen.deleteMany(); <-- Will delete everything in the collection
+
+
+
+## Update Queries
+
+Grab a document by an identifier (name, id etc) and updating its values 
+
+updateOne() - Update the first document that matches
+updateMany() - Update all documents that match 
+
+Update the first Monty to be a spiny iguana
+
+db.lizardPen.updateOne(
+{
+	"name" : {"$eq" : "Monty"}
+}, 
+{
+	"$set" : {
+			"species" : "Spiny Iguana",
+			"scalyBoi" : true
+		 }
+}
+);
+
+// All Comments needed to have a comment : true 
+
+db.lizardPen.updateMany(
+{},
+{
+	"$set" : {
+			"comment" : true
+		 }
+}
+);
+
+Exercise - 
+
+With your existing collection, Update one document, changing one value and giving it a new field value pair 
+- Update all documents, giving them all a new field
+- Delete all documents  with a specific field query 
+
+
+
+
+
+
+
+
+
+
