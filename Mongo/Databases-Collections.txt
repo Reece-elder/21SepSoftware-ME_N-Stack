@@ -21,9 +21,21 @@ Collection Commands
 
 Once you've specified use <db_name> you can pass in db instead of the database name
 
+Create - Creates a collection
+
 db.createCollection('Lizards');
 
-Exercise
-- Create 2 new databases and add collections to them
-- Read all databases
-- Delete the new database
+Read - Show collections
+show collections
+db.show collections;
+
+Delete 
+db.<collection_name>.drop();
+
+Update
+db.collection_name.renameCollection('new_name')
+
+Exercise - 
+Using the existing database, create 2 new collections, update the name of one and delete the other
+
+
