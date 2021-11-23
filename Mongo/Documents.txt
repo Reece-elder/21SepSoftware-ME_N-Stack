@@ -49,6 +49,108 @@ insertOne() - Contains one document
 insertMany() - Contains atleast 2 documents 
 
 
+===========================================
+Read Queries
+===========================================
+
+.find() - returns ALL data in that collection
+SELECT * FROM tablename
+
+## Projection 
+Only grabbing specific fields from objects
+
+db.lizardPen.find(
+{},
+{
+"name" : true,
+"Species" : true,
+"length" : true
+}
+);
+
+_id WILL ALWAYS BE SHOWN 
+UNLESS EXCLUDED WITH "_id" : false
+
+## Simple Queries
+
+By passing in partial objects, we can only select documents we want
+
+SELECT * FROM lizardPen WHERE name = "Monty"
+
+db.lizardPen.find(
+	{
+	"name" : "Monty"
+	}
+);
+
+db.lizardPen.find(
+{
+"favFood" : [
+	"Crickets",
+	"Spinach"
+	]
+}
+);
+
+## Query Operators
+
+These are used to check more than is x = y
+x != y, x < y, x contains y
+
+// Grab all lizards with length above 30
+db.lizardPen.find( 
+{
+"length" : {"$gt" : 30}
+}
+);
+
+equals = $eq
+not equals = $ne
+greater than = $gt
+less than = $lt
+Greater than or equal = $gte  
+
+### In NiN (in or not in)
+- If an array contains (or doesnt contain) a specific value 
+
+db.lizardPen.find(
+{
+	"favFood" : { "$in" : [
+			       "Kiwis"
+			      ]
+		    }
+}
+)
+
+db.lizardPen.find(
+{
+	"favFood" : { "$nin" : [
+			       "Lasagna"
+			      ]
+		    }
+}
+)
+
+Exercise
+
+Create 2 more documents to add to your collection (look at below queries to see what you may need to add) 
+
+Using the following queries return some data
+- Read all
+- Equals
+- Doesnt Equal
+- Less than
+- Greater than or equals
+- In
+- not in 
+
+Stretch goal 
+- For every query, only show the data you're querying and some other id (name) 
+
+
+
+
+
 
 
 
