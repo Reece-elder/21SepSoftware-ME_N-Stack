@@ -122,6 +122,8 @@ db.lizardPen.find(
 }
 )
 
+{ "favFood" : { "$nin" : [ "kiwis"] } }
+
 db.lizardPen.find(
 {
 	"favFood" : { "$nin" : [
@@ -146,6 +148,29 @@ Using the following queries return some data
 
 Stretch goal 
 - For every query, only show the data you're querying and some other id (name) 
+
+.find() - Search the entire collection for documents, returning them all
+.findOne() - Searches through the collection and returns the first that matches 
+
+## Delete Queries
+
+db.lizardPen.deleteOne(); - Will delete the first document that matches the criteria
+
+db.lizardPen.deleteMany(); - Will delete all objects that match the criteria
+
+db.lizardPen.deleteOne(
+{
+"name" : "Monty"
+}
+);
+
+db.lizardPen.deleteMany(
+{
+"name" : "Monty"
+}
+);
+
+db.lizardPen.deleteMany(); <-- Will delete everything in the collection
 
 
 
