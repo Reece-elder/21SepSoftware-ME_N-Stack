@@ -154,7 +154,7 @@ Stretch goal
 
 ## Delete Queries
 
-db.lizardPen.deleteOne(); - Will delete the first document that matches the criteria
+db.lizardPen.deleteOne(); - Will delete the first document (by query and id) that matches the criteria
 
 db.lizardPen.deleteMany(); - Will delete all objects that match the criteria
 
@@ -172,6 +172,45 @@ db.lizardPen.deleteMany(
 
 db.lizardPen.deleteMany(); <-- Will delete everything in the collection
 
+
+
+## Update Queries
+
+Grab a document by an identifier (name, id etc) and updating its values 
+
+updateOne() - Update the first document that matches
+updateMany() - Update all documents that match 
+
+Update the first Monty to be a spiny iguana
+
+db.lizardPen.updateOne(
+{
+	"name" : {"$eq" : "Monty"}
+}, 
+{
+	"$set" : {
+			"species" : "Spiny Iguana",
+			"scalyBoi" : true
+		 }
+}
+);
+
+// All Comments needed to have a comment : true 
+
+db.lizardPen.updateMany(
+{},
+{
+	"$set" : {
+			"comment" : true
+		 }
+}
+);
+
+Exercise - 
+
+With your existing collection, Update one document, changing one value and giving it a new field value pair 
+- Update all documents, giving them all a new field
+- Delete all documents  with a specific field query 
 
 
 
