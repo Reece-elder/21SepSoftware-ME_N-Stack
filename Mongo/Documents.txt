@@ -1,0 +1,57 @@
+Documents are objects of data stored in MongoDB using BSON 
+
+Documents DO NOT NEED TO follow a strict schema (but is generally useful to give them a schema) 
+
++ Much easier to update data along the line 
+- Its harder to see the connections between data AND data can be come muddled
+
+ 
+How to Create a document to put in the collection
+
+insertOne() <-- Pass in the BSON we want to add
+
+db.lizardPen.insertOne(
+{
+"name" : "Monty",
+"species" : "Iguana",
+"length" : 23
+});
+
+_id : Is a default 'primary key' unique identifier for this object, created with hexidecimal 
+
+insertMany() to insert multiple documents
+
+db.lizardPen.insertMany([
+
+{
+"name" : "buttercup",
+"species" : "Gecko",
+"favFood" : [
+	"Crickets",
+	"Kiwis",
+	"Spinach"
+	]
+},
+{
+"name" : "Mia",
+"species" : "Corn Snake",
+"length" : 31,
+"shedSkin" : true
+}]);
+
+Exercise - 
+Using a database called zoo, pet shop, garage, cafe 
+Create a collection within that database
+Insert 3 document that make sense 
+Each doucment should have atleast 4 fields, with 2 of them being unique to that document 
+
+insertOne() - Contains one document
+insertMany() - Contains atleast 2 documents 
+
+
+
+
+
+
+
+
