@@ -14,12 +14,20 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
+//     console.log(new Date());
+//     next();
+// });
+
+// Nested Middleware
+// Common Middleware (like app.json()) should run for everything
+// Nested middleware will only run for the specific endpoints you choose
+
+const logger = ((req, res, next) => {
     console.log(new Date());
-    next();
 });
 
-app.get('/hello', (req, res) => {
+app.get('/hello', logger, (req, res) => {
     console.log("Site accessed");
     res.send("site accessed");
 });
