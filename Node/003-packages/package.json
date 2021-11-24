@@ -1,0 +1,15 @@
+{
+  "name": "my-first-package",
+  "version": "1.0.0",
+  "description": "basic package to create a demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "reeeeeeeeeece",
+  "license": "ISC",
+  "dependencies": {
+    "one-liner-joke": "^1.2.2",
+    "snake-names": "^1.0.9"
+  }
+}

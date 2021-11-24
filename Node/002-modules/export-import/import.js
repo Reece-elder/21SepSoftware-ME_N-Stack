@@ -5,7 +5,7 @@ const { testStringExp, pizza, addFunc } = require('./export.js');
 
 console.log(testStringExp);
 console.log(pizza);
-console.log(addFunc);
+console.log(addFunc());
 
 // Exercise 
 // Create one index.js file
