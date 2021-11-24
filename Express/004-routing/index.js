@@ -9,7 +9,7 @@ const routes = require('./routes/routes.js');
 app.use(express.json());
 
 // Set up our app to use the new routes
-app.use(routes);
+app.use('/routes', routes);
 
 // Tell our server to listen to port 5015
 const server = app.listen(5015, () => {
