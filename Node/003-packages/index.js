@@ -4,7 +4,7 @@ const oneLinerJoke = require('one-liner-joke');
 // console.log(snakeNames);
 console.log(snakeNames.badassRandom());
 
-console.log(oneLinerJoke.getRandomJoke());
+console.log(oneLinerJoke);
 
 // Exercise - Using your npm project
 // Import in any package from npm site (NOT ONES WE'VE USED THO)
