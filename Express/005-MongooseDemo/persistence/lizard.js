@@ -30,11 +30,11 @@ const lizardSchema = new Schema({
 
 // Create a model of our lizard using the schema 
 // Create a model called lizard using the lizard name and schema
-const lizard = model('lizard', lizardSchema);
+const Lizard = model('Lizard', lizardSchema);
 
 // Export our lizard
 
-module.exports = {'lizard' : lizard};
+module.exports = {'Lizard' : Lizard};
 
 // Exercise - Creating a Schema for your project 
 // Exporting the model of your schema
