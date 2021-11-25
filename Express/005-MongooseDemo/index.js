@@ -15,6 +15,18 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+// Custom Error Middleware
+// Will never run because it hasn't been declared with app.use
+// Some middleground where this runs WHENEVER we get an error
+const errorLogger = (error, req, res, next) => {
+    // any middlware with an 'err' will be called when Express catches an error 
+    // console.log("Error!");
+    console.log(err.stack);
+    res.status(500).send(error.message);
+}
+
+app.use(errorLogger);
+
 
 // Connecting our app to mongodb
 // You will need to ensure that this database exists before connecting

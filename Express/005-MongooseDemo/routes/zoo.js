@@ -8,7 +8,7 @@ const {Lizard} = require('../persistence/lizard.js');
 
 // Creating a function that will push data to the database
 
-router.post('/create', (req, res) => {
+router.post('/create', (req, res, next) => {
 
     // Creating a new lizard using the schema and model and passing in the request body
     const lizard = new Lizard(req.body);
@@ -18,12 +18,14 @@ router.post('/create', (req, res) => {
     // Save the lizard into our database
     // .save() is an inbuilt function to add the lizard to the mongodb
     lizard.save()
+    //.then() waits for a promise to be resolved, if it is do this thing
     .then((result) => {
         res.status(201).send(`${result} saved to database!`);
     })
+    // .catch() ONLY RUNS if the promise is rejected 
     .catch((error) => {
-        console.log(`error :( : ${error}`);
-        res.status(500).send(error);
+        // Throwing the error to our error logger
+        next(error);
     });
 
 });
@@ -32,7 +34,7 @@ router.post('/create', (req, res) => {
 router.get('/getAll', (req, res) => {
 
     // Use the Lizard in built functions to get all the data
-    Lizard.find((error, lizardList) => {
+    lizard.find((error, lizardList) => {
         if (error) {
             console.log(`error :( : ${error}`);
         }
@@ -41,15 +43,19 @@ router.get('/getAll', (req, res) => {
 })
 
 // Get One (by id)
-router.get('/getId/:id', (req, res) => {
+// Using Error Logger with requests
+// Add next to my arrow function paramaters
+router.get('/getId/:id', (req, res, next) => {
     console.log(req.params.id);
     Lizard.findById(req.params.id, (error, result) => {
         if (error) {
-            console.log(`error :( : ${error}`);
-        } 
-        res.status(200).send(result);
-    })
-})
+            // If an error is caught, throw it to the errorLogger
+            next(error);
+        } else {
+            res.status(200).send(result);
+        }
+    });
+});
 
 // Get by Name
 router.get('/getName/:name', (req, res) => {
