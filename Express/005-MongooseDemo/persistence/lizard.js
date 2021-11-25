@@ -9,11 +9,22 @@ const lizardSchema = new Schema({
         // Name will be of type string
         type: String,
         // Is name required?
-        required: true 
+        required: true,
+        // The String cant be longer than 15 chars
+        maxLength: 15,
+        minLength: 4
     },
     // Short hand for saying it will have a colour, and it will be of type string
-    colour: String,
-    rating: Number,
+    colour: {
+        type: String,
+        // The colour must be one of these options
+        enum: ["red", "green", "brown", "yellow"]
+    },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
     isScaly: Boolean
 }); 
 
