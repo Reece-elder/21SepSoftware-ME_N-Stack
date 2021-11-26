@@ -20,7 +20,7 @@ router.post('/create', (req, res, next) => {
     lizard.save()
     //.then() waits for a promise to be resolved, if it is do this thing
     .then((result) => {
-        res.status(201).send(`${result} saved to database!`);
+        res.status(201).send(`${result.name} saved to database!`);
     })
     // .catch() ONLY RUNS if the promise is rejected 
     .catch((error) => {
@@ -34,7 +34,7 @@ router.post('/create', (req, res, next) => {
 router.get('/getAll', (req, res) => {
 
     // Use the Lizard in built functions to get all the data
-    lizard.find((error, lizardList) => {
+    Lizard.find((error, lizardList) => {
         if (error) {
             console.log(`error :( : ${error}`);
         }

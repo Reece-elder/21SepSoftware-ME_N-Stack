@@ -1,3 +1,13 @@
+const testDB = true;
+let dbURI;
+
+// Simple if else statement to determine if we're using test or prod db
+if (testDB == true){
+    dbURI = "testzoo";
+} else {
+    dbURI = "zoo";
+};
+
 const express = require('express');
 
 // Import the routes variables / object
@@ -30,7 +40,7 @@ app.use(errorLogger);
 
 // Connecting our app to mongodb
 // You will need to ensure that this database exists before connecting
-mongoose.connect('mongodb://localhost:27017/zoo', {useNewUrlParser : true}, (error) => {
+mongoose.connect(`mongodb://localhost:27017/${dbURI}`, {useNewUrlParser : true}, (error) => {
     if(error) {
         console.log(`Error, cant connect to database: ${error}`);
     } else {
