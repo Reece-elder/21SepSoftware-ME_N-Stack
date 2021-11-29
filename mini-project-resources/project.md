@@ -35,3 +35,4 @@ The workload will be split between the team with the following roles:
 - backend team
 - front end team
 - mongoDB team (maybe?)
+- Everyone to work on testing together 
