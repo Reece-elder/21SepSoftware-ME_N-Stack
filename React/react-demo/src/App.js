@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import MyFirstComp from './components/myFirstComp';
+import Article from './components/003-Parent-child/article';
 
+// When placing a react component in you must use UpperCamelCase
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is new code
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React 
-        </a>
-      </header>
+    // html Elements are always lower case
+    <div> 
+      {/* Placing My component INTO this div */}
+      <MyFirstComp/>
+      <Article/>
     </div>
   );
 }
